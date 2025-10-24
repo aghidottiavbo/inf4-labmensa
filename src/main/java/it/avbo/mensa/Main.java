@@ -12,6 +12,7 @@ public class Main {
         AuthenticationService authService = null;
         MenuService menuService = null;
         OrderingService orderingService = null;
+        PersistenceService persistenceService = null;
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Servizio mensa AVBO: Benvenuto!");

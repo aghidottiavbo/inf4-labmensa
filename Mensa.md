@@ -6,7 +6,7 @@ Questa esercitazione ha l'obiettivo di mostrare come scomporre un'applicazione i
 Inoltre, contestualmente si vogliono introdurre alcuni nuovi concetti come i `record`, le _collezioni_ e i metodi per
 I/O su file.
 Infine, l'esercizio vuole essere utilizzato come base di partenza per introdurre alcuni elementi di base dell'ingegneria
-del software, come i principi SOLID, la gestione delle dipendenze ed alcuni semplici Design Pattern. 
+del software, come i principi SOLID, la gestione delle dipendenze e alcuni semplici _Design Pattern_. 
 
 ## Descrizione API
 
@@ -73,10 +73,10 @@ public final class MenuEntry {
 }
 ```
 
-dove osserviamo come i campi privati siano `final` (ossia non-riassegnabili/modificabili), dando quindi luogo ad una
+Osserviamo come i campi privati siano `final` (ossia non-riassegnabili/modificabili), dando quindi luogo ad una
 classe le cui istanze sono immutabili.
 Grazie alla keyword `record`, il compilatore produce automaticamente una classe con campi `final`, in cui sono
-dichiarati ed implementati i corrispondenti metodi getter (i setter non ha senso siano previsti, dato che i campi
+dichiarati e implementati i corrispondenti metodi getter (i setter non ha senso siano previsti, dato che i campi
 non possono essere modificati).
 Inoltre, il compilatore ridefinisce automaticamente i metodi `equals()` e `hashCode()`, per permettere un corretto
 utilizzo dei record con le collezioni.
@@ -86,3 +86,18 @@ Servizio che permette di aggiungere, eliminare ed elencare tutte le "pietanze" d
 
 ### OrderingService
 Servizio che permette di effettuare un ordine dal menu ed elencare tutti gli ordini pervenuti al servizio mensa
+
+### PersistenceService
+Servizio che inoltra le richieste di salvataggio e caricamento di menu e ordini ai corrispondenti servizi specializzati
+Secondo i principi SOLID, in particolare il Single Responsibility Principle (SRP) e l'Interface Segregation Principle (IRP)
+non è una buona pratica mantenere un'interfaccia `PersistenceService` che include la definizione di funzionalità relative
+a responsabilità differenti: la persistenza degli ordini e la persistenza del menu.
+
+Conviene pertanto scomporre l'interfaccia in due interfacce più "piccole", ciascuna che definisce il comportamento per
+una specifica funzionalità da implementare.
+
+#### MenuPersistenceService
+Servizio che permette di salvare e caricare il menu con tutte le "pietanze" disponibili nella mensa
+
+#### OrdersPersistenceService
+Servizio che permette di salvare e caricare gli ordini pervenuti al servizio mensa
