@@ -10,6 +10,11 @@ del software, come i principi SOLID, la gestione delle dipendenze e alcuni sempl
 
 ## Descrizione API
 
+![Architettura.png](Architettura.png)
+
+L'idea è quella di realizzare insieme l'API, in cui si descrive il comportamento dell'applicazione e poi suddividere il
+lavoro di implementazione in gruppi, ciascuno responsabile di un modulo.
+
 ### AuthenticationService
 Servizio che permette di effettuare login e logout e verificare se una sessione è attiva.
 
